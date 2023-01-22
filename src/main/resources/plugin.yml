@@ -1,0 +1,9 @@
+name: Moon
+version: '${project.version}'
+main: de.wzrd.moon
+api-version: 1.19
+prefix: MOON
+load: STARTUP
+authors: [ Wzrdwastaken ]
+description: A medium sized plugin centered around in game economy economy
+website: https://github.com/AdrisGithub
