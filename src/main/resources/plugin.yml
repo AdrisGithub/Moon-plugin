@@ -1,9 +1,18 @@
 name: Moon
 version: '${project.version}'
-main: de.wzrd.moon
+main: de.wzrd.Moon
 api-version: 1.19
 prefix: MOON
 load: STARTUP
 authors: [ Wzrdwastaken ]
 description: A medium sized plugin centered around in game economy economy
 website: https://github.com/AdrisGithub
+commands:
+  balance:
+    description: Gets the Balance of a given Player
+    aliases:
+      - bal
+  setbalance:
+    description: Sets the Balance of a give n Player to a given value
+    aliases:
+      - setbal
