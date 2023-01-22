@@ -1,8 +1,7 @@
 package de.wzrd.Commands;
 
+import de.wzrd.Moon;
 import de.wzrd.PlayerDataBase.PlayerHandler;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -22,24 +21,21 @@ public class Balance implements CommandExecutor {
             try {
                 amount = PlayerHandler.getBalanceFrom(player.getUniqueId());
             } catch (IOException e) {
-                sender.sendMessage(text("This Player doesn't exist"));
+                sender.sendMessage(Moon.textWarning("This Player doesn't exist"));
                 return false;
             }
-            sender.sendMessage(text(player.getName() + " currently has " + amount + " Dollars"));
+            sender.sendMessage(Moon.textInfo(player.getName() + " currently has " + amount + " Dollars"));
             return true;
         }
         if(!(sender instanceof Player)) return false;
         Player player = ((Player) sender).getPlayer();
         try {
-            sender.sendMessage(text("You currently have " + PlayerHandler.getBalanceFrom(player.getUniqueId()) + " Dollars"));
+            sender.sendMessage(Moon.textInfo("You currently have " + PlayerHandler.getBalanceFrom(player.getUniqueId()) + " Dollars"));
             return true;
         } catch (IOException e) {
-            sender.sendMessage(text("This Player doesn't exist"));
+            sender.sendMessage(Moon.textInfo("This Player doesn't exist"));
             return false;
         }
     }
 
-    public Component text(String string){
-        return Component.text(string).color(TextColor.color(0, 255, 0));
-    }
 }

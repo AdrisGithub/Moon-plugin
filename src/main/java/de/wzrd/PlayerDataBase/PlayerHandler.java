@@ -27,7 +27,7 @@ public class PlayerHandler {
 
     private static PlayerInfos getPlayerInfosFromFile(File file) throws IOException {
         BufferedReader read = new BufferedReader(new FileReader(file));
-        return new PlayerInfos(Integer.parseInt(read.readLine()));
+        return new PlayerInfos(Long.parseLong(read.readLine()));
     }
 
     public static void leavePlayer(UUID key){
@@ -59,6 +59,7 @@ public class PlayerHandler {
             if(!file.exists()) throw new IOException();
             BufferedWriter write = new BufferedWriter(new FileWriter(file,false));
             write.write(amount+"");
+            database.put(key,new PlayerInfos(amount));
         }
 
     }

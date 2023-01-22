@@ -1,8 +1,7 @@
 package de.wzrd.Commands;
 
+import de.wzrd.Moon;
 import de.wzrd.PlayerDataBase.PlayerHandler;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -16,11 +15,11 @@ public class SetBalance implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(!sender.isOp()){
-            sender.sendMessage(Component.text("You don#t have the Permission to use this Command").color(TextColor.color(255,0,0)));
+            sender.sendMessage(Moon.textWarning("You don't have the Permission to use this Command"));
             return false;
         }
         if (args.length != 2){
-            sender.sendMessage(Component.text("/setBalance <Player> <Amount>").color(TextColor.color(255,0,0)));
+            sender.sendMessage(Moon.textMediumWarning("/setBalance <Player> <Amount>"));
             return false;
         }
         OfflinePlayer player = Bukkit.getOfflinePlayer(args[0]);
@@ -28,19 +27,16 @@ public class SetBalance implements CommandExecutor {
         try {
             amount = Long.parseLong(args[1]);
         }catch (NumberFormatException num){
-            sender.sendMessage(Component.text("/setBalance <Player> <Amount>").color(TextColor.color(255,0,0)));
+            sender.sendMessage(Moon.textMediumWarning("/setBalance <Player> <Amount>"));
             return false;
         }
         try {
             PlayerHandler.setBalanceFrom(player.getUniqueId(),amount);
-            sender.sendMessage(text("Successfully set the Purse to "+amount));
+            sender.sendMessage(Moon.textInfo("Successfully set the Purse to "+amount));
         } catch (IOException e) {
-            sender.sendMessage(text("This Player doesn't exist"));
+            sender.sendMessage(Moon.textMediumWarning("This Player doesn't exist"));
             return false;
         }
         return true;
-    }
-    public Component text(String string){
-        return Component.text(string).color(TextColor.color(0, 255, 0));
     }
 }
