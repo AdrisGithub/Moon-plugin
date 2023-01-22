@@ -17,6 +17,7 @@ public class PlayerHandler {
         try {
             if(file.createNewFile()){
                 database.put(key,new PlayerInfos());
+                savePlayerInfos(key);
             }else{
                 database.put(key,getPlayerInfosFromFile(file));
             }
@@ -61,7 +62,18 @@ public class PlayerHandler {
             write.write(amount+"");
             database.put(key,new PlayerInfos(amount));
         }
-
+    }
+    public static void addBalanceFrom(UUID key,long amount) throws IOException {
+        setBalanceFrom(key,getBalanceFrom(key)+amount);
+    }
+    public static void subBalanceFrom(UUID key,long amount) throws IOException {
+        long currency = getBalanceFrom(key);
+        if(amount>currency)throw new IOException();
+        setBalanceFrom(key,(currency-amount));
+    }
+    public static boolean hasEnoughMoney(UUID key,long amount){
+        if(!database.containsKey(key)) return false;
+        return (database.get(key).getCurrency()>=amount);
     }
 
 

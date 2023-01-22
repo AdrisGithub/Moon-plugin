@@ -20,3 +20,5 @@ commands:
     description: Prints the Players with the most Balance
     aliases:
       - baltop
+  pay:
+    description: pays the player with the given currency

@@ -2,6 +2,7 @@ package de.wzrd;
 
 import de.wzrd.Commands.Balance;
 import de.wzrd.Commands.BalanceTop;
+import de.wzrd.Commands.Pay;
 import de.wzrd.Commands.SetBalance;
 import de.wzrd.EventHandler.OnJoinSlashLeave;
 import de.wzrd.PlayerDataBase.PlayerHandler;
@@ -29,6 +30,7 @@ public final class Moon extends JavaPlugin {
         Objects.requireNonNull(getCommand("balance")).setExecutor(new Balance());
         Objects.requireNonNull(getCommand("setBalance")).setExecutor(new SetBalance());
         Objects.requireNonNull(getCommand("balancetop")).setExecutor(new BalanceTop());
+        Objects.requireNonNull(getCommand("pay")).setExecutor(new Pay());
     }
 
     public void initHandler(){
