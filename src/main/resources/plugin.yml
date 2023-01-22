@@ -16,3 +16,7 @@ commands:
     description: Sets the Balance of a give n Player to a given value
     aliases:
       - setbal
+  balancetop:
+    description: Prints the Players with the most Balance
+    aliases:
+      - baltop
